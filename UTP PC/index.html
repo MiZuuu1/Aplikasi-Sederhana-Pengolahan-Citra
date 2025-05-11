@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Pengolahan Citra Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Aplikasi Pengolahan Citra Digital</h1>
+    
+    <div class="controls">
+        <div class="control-group">
+            <label for="imageUpload">Upload Gambar:</label>
+            <input type="file" id="imageUpload" accept="image/*">
+        </div>
+        
+        <button id="grayscaleBtn">Grayscale</button>
+        <button id="resetBtn">Reset Gambar</button>
+        
+        <div class="control-group">
+            <label for="brightness">Brightness:</label>
+            <input type="range" id="brightness" min="-100" max="100" value="0">
+            <span id="brightnessValue" class="value-display">0</span>
+        </div>
+        
+        <div class="control-group">
+            <label for="contrast">Contrast:</label>
+            <input type="range" id="contrast" min="-100" max="100" value="0">
+            <span id="contrastValue" class="value-display">0</span>
+        </div>
+        
+        <button id="applyBrightnessContrast">Terapkan Brightness/Contrast</button>
+        
+        <div class="control-group">
+            <label for="medianBlur">Filter Median (Ukuran Kernel):</label>
+            <input type="range" id="medianBlur" min="1" max="15" step="2" value="3">
+            <span id="medianBlurValue" class="value-display">3</span>
+        </div>
+        
+        <button id="applyMedianBtn">Terapkan Filter Median</button>
+        
+        <div class="control-group">
+            <label for="cannyThreshold1">Canny Edge - Threshold 1:</label>
+            <input type="range" id="cannyThreshold1" min="0" max="500" value="50">
+            <span id="cannyThreshold1Value" class="value-display">50</span>
+        </div>
+        
+        <div class="control-group">
+            <label for="cannyThreshold2">Canny Edge - Threshold 2:</label>
+            <input type="range" id="cannyThreshold2" min="0" max="500" value="150">
+            <span id="cannyThreshold2Value" class="value-display">150</span>
+        </div>
+        
+        <button id="applyCannyBtn">Terapkan Canny Edge Detection</button>
+    </div>
+    
+    <div class="container">
+        <div class="image-container">
+            <h2>Gambar Asli</h2>
+            <canvas id="originalCanvas"></canvas>
+            <p id="originalDimensions">-</p>
+        </div>
+        <div class="image-container">
+            <h2>Hasil Pengolahan</h2>
+            <canvas id="processedCanvas"></canvas>
+            <p id="processedDimensions">-</p>
+        </div>
+    </div>
+    
+    <div class="explanation">
+        <h2>Penjelasan Fitur Pengolahan Citra</h2>
+        <h3>1. Konversi Grayscale</h3>
+        <p>Mengubah gambar berwarna (RGB) menjadi grayscale dengan menghitung nilai intensitas dari komponen merah, hijau, dan biru.</p>
+        
+        <h3>2. Brightness dan Contrast</h3>
+        <p>Brightness mengatur kecerahan gambar. Contrast mengatur perbedaan antara area terang dan gelap.</p>
+        
+        <h3>3. Filter Median</h3>
+        <p>Filter nonlinear yang efektif untuk menghilangkan noise dengan mengganti nilai piksel dengan median nilai piksel di sekitarnya.</p>
+        
+        <h3>4. Deteksi Tepi Canny</h3>
+        <p>Algoritma deteksi tepi multi-tahap yang menghasilkan tepi tipis dan bersih.</p>
+    </div>
+
+    <script async src="https://docs.opencv.org/4.5.5/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+    <script src="script.js"></script>
+</body>
+</html>
